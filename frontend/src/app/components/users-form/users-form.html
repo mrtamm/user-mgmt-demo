@@ -1,0 +1,90 @@
+<main class="min-h-screen bg-background px-4 py-10">
+  <div class="mx-auto w-full max-w-md">
+
+
+    <h1 class="text-2xl font-bold tracking-tight text-foreground">
+      @if (isNew()) { Create User } @else { Update User }
+    </h1>
+
+    <p class="mt-1 text-sm text-muted-foreground">
+      All fields are required.
+    </p>
+
+    <div class="mt-6">
+      <form class="space-y-5" [formGroup]="form()" (ngSubmit)="save()">
+
+        <div class="space-y-1.5">
+          <label for="firstName" class="text-sm font-medium text-foreground">First Name</label>
+          <input
+            id="firstName"
+            formControlName="firstName"
+            type="text"
+            maxLength="100"
+            class="w-full rounded-lg border bg-background px-3.5 py-2.5 text-sm text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40 border-input focus:border-ring"
+          />
+          @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+          <p class="text-sm text-destructive">First name is required</p>
+          }
+          @if (customErrors()['firstName']) {
+          <p class="text-sm text-destructive">
+            {{ customErrors()['firstName'] }}
+          </p>
+          }
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="lastName" class="text-sm font-medium text-foreground">Last Name</label>
+          <input
+            id="lastName"
+            formControlName="lastName"
+            type="text"
+            maxLength="100"
+            class="w-full rounded-lg border bg-background px-3.5 py-2.5 text-sm text-foreground shadow-sm outline-none transition placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40 border-input focus:border-ring shadow-lg "
+          />
+          @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+          <p class="text-sm text-destructive">Last name is required</p>
+          }
+          @if (customErrors()['lastName']) {
+          <p class="text-sm text-destructive">
+            {{ customErrors()['lastName'] }}
+          </p>
+          }
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="email" class="text-sm font-medium text-foreground">Email</label>
+          <input
+            id="email"
+            formControlName="email"
+            type="email"
+            maxLength="100"
+            class="w-full rounded-lg border bg-background px-3.5 py-2.5 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:ring-2 focus:ring-ring/40 border-input focus:border-ring shadow-md "
+          />
+          @if (email.invalid && (email.dirty || email.touched)) {
+          <p class="text-sm text-destructive">
+            @if (email.hasError('required')) { Email is required. }
+            @else { Email format is invalid }
+          </p>
+          }
+          @if (customErrors()['email']) {
+            <p class="text-sm text-destructive">
+              {{ customErrors()['email'] }}
+            </p>
+          }
+        </div>
+
+        <div class="flex justify-end gap-3 pt-2">
+          <button type="button" (click)="cancel()"
+                  class="rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition hover:bg-accent focus-visible:bg-accent shadow-md"
+          >Cancel
+          </button>
+          <button type="save" [disabled]="form().invalid"
+                  class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-md transition hover:bg-primary/70 focus-visible:bg-primary/70"
+          >Save
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>

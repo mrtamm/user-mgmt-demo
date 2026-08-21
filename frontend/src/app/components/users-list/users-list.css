@@ -1,0 +1,11 @@
+table {
+  /* Forces the table to respect cell widths instead of expanding to fit text */
+  table-layout: fixed;
+  width: 100%;
+}
+
+td, th {
+  /* Forces long words/strings without spaces to break and wrap to the next line */
+  overflow-wrap: break-word; /* Recommended modern property */
+  word-break: break-word;    /* Fallback/alternative for older browsers */
+}

@@ -1,0 +1,60 @@
+
+<main class="min-h-screen bg-background px-4 py-10">
+  <div class="mx-auto w-full max-w-3xl">
+    <div class="flex items-center justify-between gap-4">
+      <h1 class="text-2xl font-bold tracking-tight text-foreground">
+        User List
+      </h1>
+
+      <button type="button" (click)="navigateBack()"
+        class="inline-flex items-center justify-center rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition hover:bg-accent"
+      >Back</button>
+    </div>
+
+    <div class="mt-6 overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+      <table class="w-full text-left text-sm">
+
+        <thead class="bg-muted/50 text-muted-foreground">
+          <tr>
+            <th class="px-4 py-3 font-semibold">First Name</th>
+            <th class="px-4 py-3 font-semibold">Last Name</th>
+            <th class="px-4 py-3 font-semibold">Email</th>
+            <th class="px-4 py-3 text-right font-semibold">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-border">
+        @if (users().length === 0) {
+          <tr>
+            <td colSpan="4" class="px-4 py-10 text-center text-muted-foreground">
+              No users yet. Create one to get started.
+            </td>
+          </tr>
+        }
+
+        @for (user of users(); track user.id) {
+          <tr class="transition hover:bg-muted/40">
+            <td class="px-4 py-3 text-foreground text-ellipsis">
+              {{user.firstName}}
+            </td>
+            <td class="px-4 py-3 text-foreground text-ellipsis">
+              {{user.lastName}}
+            </td>
+            <td class="px-4 py-3 text-foreground text-ellipsis">
+              {{user.email}}
+            </td>
+            <td class="px-4 py-3 text-right">
+              <a [routerLink]="['/users', user.id]"
+                class="inline-flex items-center justify-center rounded-lg bg-primary px-3.5 py-1.5 text-xs font-medium text-primary-foreground transition hover:bg-primary/90"
+              >
+                Edit User
+              </a>
+            </td>
+          </tr>
+        }
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

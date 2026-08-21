@@ -1,0 +1,25 @@
+server.port: 8080
+
+spring:
+  application:
+    name: user-mgmt-demo
+  main:
+    banner-mode: off
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: ""
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+
+# Swagger documentation settings:
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger.html
+    operationsSorter: alpha
+  default-produces-media-type: application/json
